@@ -1,0 +1,20 @@
+version: '3'
+services:
+  metricbeat:
+    container_name: metricbeat
+    image: saymosaic/metricbeat:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      # - ${PWD}/metricbeat.yml:/usr/share/metricbeat/metricbeat.yml:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro
+      - /proc:/hostfs/proc:ro
+      - /:/hostfs:ro      
+    environment:     
+     - KIBANA_HOST=<kibana_url>
+     - ELASTIC_HOST=<elastic_url>
+     - ELASTIC_USER=<username>
+     - ELASTIC_PASS=<password>
