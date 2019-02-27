@@ -27,8 +27,8 @@ metricbeat.modules:
 
 
 #==================== Elasticsearch template setting ==========================
-setup.template.name: "mosaix-metricbeat-%{+yyyy.MM.dd}"
-setup.template.pattern: "mosaix-metricbeat-*"
+setup.template.name: "metricbeat-docker-%{+yyyy.MM.dd}"
+setup.template.pattern: "metricbeat-docker-*"
 
 setup.template.settings:
  index.number_of_shards: 1
@@ -38,7 +38,7 @@ processors:
   - add_cloud_metadata: ~
 
 output.elasticsearch:
-  index: "mosaix-metricbeat-%{+yyyy.MM.dd}"
+  index: "metricbeat-docker-%{+yyyy.MM.dd}"
   hosts: "${ELASTIC_HOST}"
   username: "${ELASTIC_USER}"
   password: "${ELASTIC_PASS}"
@@ -49,7 +49,7 @@ output.elasticsearch:
 # the dashboards is disabled by default and can be enabled either by setting the
 # options here, or by using the `-setup` CLI flag or the `setup` command.
 setup.dashboards.enabled: true
-setup.dashboards.index: "mosaix-metricbeat-*"
+setup.dashboards.index: "metricbeat-docker-*"
 #============================== Kibana =====================================
 # Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
 # This requires a Kibana endpoint configuration.

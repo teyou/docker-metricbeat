@@ -3,7 +3,7 @@ DOCKER_IMAGE ?= metricbeat
 VERSION ?= 6.5.4
 
 build:
-	docker build --build-arg METRICBEAT_VERSION=${VERSION} -t $(REGISTRY)/$(DOCKER_IMAGE):$(VERSION) -t $(REGISTRY)/$(DOCKER_IMAGE):latest .
+	docker build --no-cache --build-arg METRICBEAT_VERSION=${VERSION} -t $(REGISTRY)/$(DOCKER_IMAGE):$(VERSION) -t $(REGISTRY)/$(DOCKER_IMAGE):latest .
 
 run:
 	docker-compose up
